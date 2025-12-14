@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Smart Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>Smart Attendance System</h1>
+    </header>
+
+    <main class="container">
+        <section class="class-management card">
+            <div class="section-header">
+                <h2>Class Management</h2>
+                <button id="createClassBtn" class="btn primary">+ Create Class</button>
+            </div>
+
+            <div id="classesList" class="classes-list"></div>
+
+            <div id="createClassModal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>Create New Class</h3>
+                    <form id="createClassForm" class="register-form">
+                        <label class="field">
+                            <span class="label">Class ID</span>
+                            <input id="newClassId" name="class_id" type="text" placeholder="CS101" required />
+                        </label>
+                        <label class="field">
+                            <span class="label">Class Name</span>
+                            <input id="newClassName" name="name" type="text"
+                                placeholder="Introduction to Computer Science" required />
+                        </label>
+                        <div class="form-actions">
+                            <button type="button" id="cancelClassBtn" class="btn">Cancel</button>
+                            <button type="submit" class="btn primary">Create Class</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="take-attendance card">
+            <h2>Take Attendance</h2>
+
+            <label class="field">
+                <span class="label">Select Class</span>
+                <select id="attendanceClassSelect" class="form-select">
+                    <option value="">All Students</option>
+                </select>
+            </label>
+
+            <div class="controls">
+                <label class="btn large" id="cameraBtn">📸 Take Photo
+                    <input id="fileInput" type="file" accept="image/*" capture="environment" />
+                </label>
+
+                <button id="openCameraBtn" class="btn large">🎥 Open Camera</button>
+
+                <label class="btn large" for="uploadInput">📁 Upload Photo</label>
+                <input id="uploadInput" type="file" accept="image/*" style="display:none" />
+
+                <button id="markBtn" class="btn primary large" disabled>Mark Attendance</button>
+            </div>
+
+            <div class="preview hidden" id="previewContainer" aria-hidden="true">
+                <img id="previewImage" alt="Selected photo preview" />
+            </div>
+
+            <div id="cameraModal" class="camera-modal hidden">
+                <video id="cameraVideo" autoplay playsinline></video>
+                <div class="camera-actions">
+                    <button id="captureBtn" class="btn large">📸 Capture</button>
+                    <button id="closeCameraBtn" class="btn">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="attendance-preview card hidden" id="attendanceSection">
+            <div class="attendance-header">
+                <div>
+                    <strong>Date:</strong> <span id="attDate">—</span>
+                </div>
+                <div>
+                    <strong>Class:</strong> <span id="attClass">—</span>
+                </div>
+                <div>
+                    <strong>Total Students:</strong> <span id="attTotal">—</span>
+                </div>
+            </div>
+
+            <div class="lists">
+                <div class="list present">
+                    <h3>✅ Present Students</h3>
+                    <ul id="presentList"></ul>
+                </div>
+                <div class="list absent">
+                    <h3>❌ Absent Students</h3>
+                    <ul id="absentList"></ul>
+                </div>
+            </div>
+
+            <div class="confirm-row">
+                <button id="confirmBtn" class="btn success large">Confirm &amp; Save Attendance</button>
+            </div>
+        </section>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+
+        <section class="card register-card" id="registerSection">
+            <h2>Register Student</h2>
+            <form id="registerForm" class="register-form">
+                <label class="field">
+                    <span class="label">Student ID</span>
+                    <input id="regStudentId" name="student_id" type="text" placeholder="S05_Shahbaz" required />
+                </label>
+
+                <label class="field">
+                    <span class="label">Class</span>
+                    <select id="regClassSelect" name="class_id" class="form-select">
+                        <option value="">Select a class</option>
+                    </select>
+                </label>
+
+                <label class="field">
+                    <span class="label">Registration Number</span>
+                    <input id="regRegNo" name="reg_no" type="text" placeholder="2024-CS-001" />
+                </label>
+
+                <label class="field">
+                    <span class="label">Program</span>
+                    <input id="regProgram" name="program" type="text" placeholder="Computer Science" />
+                </label>
+
+                <label class="field">
+                    <span class="label">Semester</span>
+                    <input id="regSemester" name="semester" type="text" placeholder="Fall 2024" />
+                </label>
+
+                <label class="field file-field">
+                    <span class="label">Photo</span>
+                    <input id="regImage" name="image" type="file" accept="image/*" required />
+                </label>
+
+                <div class="form-actions">
+                    <button id="regBtn" class="btn primary large">Register Student</button>
+                </div>
+
+                <div id="regMessage" class="message" aria-live="polite"></div>
+            </form>
+        </section>
+    </main>
+
+    <div id="overlay" class="overlay hidden">
+        <div class="spinner" aria-hidden="true"></div>
+        <div class="overlay-text">Processing image — please wait…</div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

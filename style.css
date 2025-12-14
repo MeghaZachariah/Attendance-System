@@ -1,0 +1,396 @@
+:root {
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #1f6feb;
+    --success: #0f9d58;
+    --danger: #d23f44;
+    --max-width: 980px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+}
+
+.site-header {
+    background: linear-gradient(90deg, #ffffff, #f1f5f9);
+    border-bottom: 1px solid #e6eef8;
+    padding: 18px 16px;
+    text-align: center;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 0.2px
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 18px auto;
+    padding: 0 16px
+}
+
+.card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(20, 40, 80, 0.04)
+}
+
+.take-attendance h2 {
+    margin: 0 0 12px 0;
+    font-size: 18px
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f3f6fb;
+    color: #0b1220;
+    font-weight: 600
+}
+
+.btn.large {
+    padding: 14px 18px;
+    font-size: 16px
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: white
+}
+
+.btn.success {
+    background: var(--success);
+    color: white
+}
+
+label.btn input {
+    display: none
+}
+
+#uploadInput {
+    display: none
+}
+
+.preview {
+    margin-top: 12px;
+    text-align: center
+}
+
+.preview img {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto
+}
+
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap
+}
+
+.lists {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px
+}
+
+.list {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #eef3fb
+}
+
+.list h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px
+}
+
+.list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fbfdff;
+    border: 1px solid #edf2f7;
+    cursor: pointer
+}
+
+.list li .name {
+    font-weight: 600
+}
+
+.list.present li {
+    background: #f0fff4;
+    border-color: rgba(15, 157, 88, 0.12)
+}
+
+.list.absent li {
+    background: #fff6f6;
+    border-color: rgba(210, 63, 68, 0.08)
+}
+
+.list.present h3 {
+    color: var(--success)
+}
+
+.list.absent h3 {
+    color: var(--danger)
+}
+
+.confirm-row {
+    margin-top: 12px;
+    text-align: right
+}
+
+.message {
+    min-height: 18px;
+    margin: 8px 0;
+    color: var(--muted)
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 15, 30, 0.45);
+    z-index: 60
+}
+
+.overlay.hidden {
+    display: none
+}
+
+.overlay .overlay-text {
+    color: white;
+    margin-top: 12px
+}
+
+.spinner {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.14);
+    border-top-color: #fff;
+    animation: spin 1s linear infinite
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.hidden {
+    display: none
+}
+
+/* Responsive */
+@media(min-width:720px) {
+    .lists {
+        grid-template-columns: 1fr 1fr
+    }
+}
+
+/* Accessibility focus */
+.btn:focus,
+.list li:focus {
+    outline: 3px solid rgba(31, 111, 235, 0.18);
+    outline-offset: 2px
+}
+
+/* Register form styles */
+.register-card {
+    margin-top: 12px
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.register-form .field {
+    display: flex;
+    flex-direction: column
+}
+
+.register-form .label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px
+}
+
+.register-form input[type="text"],
+.register-form input[type="file"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e6eef8;
+    background: #fbfdff
+}
+
+.register-form .form-actions {
+    text-align: right
+}
+
+/* Camera modal */
+.camera-modal {
+    position: relative;
+    margin-top: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e6eef8;
+    padding: 8px;
+    background: #fff
+}
+
+.camera-modal video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    background: #000;
+    display: block
+}
+
+.camera-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 8px
+}
+
+.camera-modal.hidden {
+    display: none
+}
+
+/* Class Management Styles */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.classes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.class-item {
+    padding: 12px;
+    border: 1px solid #e6eef8;
+    border-radius: 8px;
+    background: #fbfdff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.class-item:hover {
+    background: #f3f6fb;
+    border-color: var(--accent);
+}
+
+.class-item h4 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #111827;
+}
+
+.class-item p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 15, 30, 0.45);
+    z-index: 100;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+}
+
+/* Form Select Styles */
+.form-select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e6eef8;
+    background: #fbfdff;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: 3px solid rgba(31, 111, 235, 0.18);
+    outline-offset: 2px;
+    border-color: var(--accent);
+}
